@@ -1,3 +1,2 @@
 # MOLECULE  
-## create and testing ansible role using molecule and serverspec  
-##
+create and testing ansible role using molecule and serverspec
