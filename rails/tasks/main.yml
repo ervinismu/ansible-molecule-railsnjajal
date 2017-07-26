@@ -1,2 +1,52 @@
 ---
 # tasks file for rails
+---
+# tasks file for rails
+- name: install apt-transport-https
+  apt: name=apt-transport-https update_cache=yes
+  become: yes
+
+# Install package
+- name: install package
+  apt: name={{ item }} update_cache=yes force=yes
+  with_items:
+    - nginx
+    - nodejs
+    - postgresql
+    - libpq-dev
+    - curl
+  become: yes
+  notify:
+    - restart nginx
+
+# Install rvm.io
+- name: Install rvm.io
+  command: ansible-galaxy install rvm_io.ruby
+
+# Install rvm 
+- name: Configure servers with ruby support system wide
+  hosts: all
+  roles:
+    - { role: rvm_io.ruby,
+        tags: ruby,
+        become: yes,
+
+        rvm1_rubies: ['ruby-2.3.3'],               # Set ruby version
+        rvm1_install_flags: '--auto-dotfiles',     # Remove --user-install from defaults
+        rvm1_install_path: /usr/local/rvm,         # Set to system location
+        rvm1_user: root                            # Need root account to access system location
+      }
+
+# Instal bundler using gem
+
+# Create user role
+- name: Create user Role
+  command: sudo -u postgres psql --command "create role sinaurails with createdb login password 'superr4h4s14';"
+
+# Connection postgresql
+
+# Rake Secret
+
+# Setup rails
+
+# Setup nginx
