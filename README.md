@@ -7,7 +7,7 @@ create and testing ansible role using molecule and serverspec
 - ansible
 - serverspec
 
-## Setup Machine
+## Setup Machine OS
 add this in molecule.yml file for setup machine  
 ```
 platforms:
