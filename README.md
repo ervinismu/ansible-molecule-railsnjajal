@@ -8,7 +8,7 @@ create and testing ansible role using molecule and serverspec
 - serverspec
 
 ## Setup Machine
-add this in molecule.yml file for setup machine
+add this in molecule.yml file for setup machine  
 ```
 platforms:
     - name: debian/jessie64
